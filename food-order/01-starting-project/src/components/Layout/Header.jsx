@@ -2,7 +2,7 @@ import CartButton from "../Cart/CartButton";
 import CartContext from "../../context/cart";
 import mealIMG from "../../assets/meals.jpg";
 import styled from "styled-components";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 
 const HeaderChild = styled.header`
     position: fixed;
@@ -36,6 +36,15 @@ const MainImage = styled.div`
 
 const Header = ({ onCartButtonClick }) => {
 	const { total } = useContext(CartContext);
+	const [ playBump, setPlayBump ] = useState(false);
+
+	useEffect(() => {
+		setPlayBump(true);
+
+		const timer = setTimeout(() => setPlayBump(false), 300);
+
+		return () => clearTimeout(timer);
+	}, [ total ]);
 
 	return (
 		<>
@@ -43,7 +52,8 @@ const Header = ({ onCartButtonClick }) => {
 				<h1>ReactMeals</h1>
 				<CartButton
 					onCartButtonClick={onCartButtonClick}
-					badge={total} />
+					badge={total}
+					playBump={playBump} />
 			</HeaderChild>
 			<MainImage className="main-image">
 				<img src={mealIMG} alt="A table full of delicious meals" />

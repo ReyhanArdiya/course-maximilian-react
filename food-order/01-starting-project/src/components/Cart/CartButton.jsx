@@ -1,5 +1,28 @@
 import styled from "styled-components";
 
+const bumpAnimation = `
+& {
+  animation: bump 300ms ease-out;
+}
+
+@keyframes bump {
+  0% {
+    transform: scale(1);
+  }
+  10% {
+    transform: scale(0.9);
+  }
+  30% {
+    transform: scale(1.1);
+  }
+  50% {
+    transform: scale(1.15);
+  }
+  100% {
+    transform: scale(1);
+  }
+}`;
+
 const Container = styled.button`
     & {
       cursor: pointer;
@@ -39,27 +62,7 @@ const Container = styled.button`
       background-color: #92320c;
     }
 
-    .bump {
-      animation: bump 300ms ease-out;
-    }
-
-    @keyframes bump {
-      0% {
-        transform: scale(1);
-      }
-      10% {
-        transform: scale(0.9);
-      }
-      30% {
-        transform: scale(1.1);
-      }
-      50% {
-        transform: scale(1.15);
-      }
-      100% {
-        transform: scale(1);
-      }
-    }
+    ${({ playBump }) => playBump && bumpAnimation}
 `;
 
 const CartIcon = () => {
@@ -74,9 +77,10 @@ const CartIcon = () => {
 	);
 };
 
-const CartButton = ({ onCartButtonClick, badge = 0 }) => {
+const CartButton = ({ onCartButtonClick, playBump, badge = 0 }) => {
+	console.log(playBump);
 	return (
-		<Container onClick={onCartButtonClick}>
+		<Container playBump={playBump} onClick={onCartButtonClick}>
 			<span className="icon"><CartIcon/></span>
 			<span>Your Cart</span>
 			<span className="badge">{badge}</span>

@@ -58,12 +58,20 @@ const Cart = ({ onCloseButtonClick, onBackdropClick }) => {
 		cart,
 		totalPrice,
 		total,
-		updateMealAmount
+		updateMealAmount,
+		removeMeal
 	} = useContext(CartContext);
 
 	const hasItems = total || null;
 
-	const decAmount = (id, amount) => () => updateMealAmount(id, amount - 1);
+	const decAmount = (id, amount) => () => {
+		const newAmount = amount - 1;
+		if (newAmount) {
+			updateMealAmount(id, amount - 1);
+		} else {
+			removeMeal(id);
+		}
+	};
 	const incAmount = (id, amount) => () => updateMealAmount(id, amount + 1);
 
 	const cartItems = [];

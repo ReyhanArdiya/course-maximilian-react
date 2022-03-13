@@ -19,7 +19,7 @@ const CartContext = React.createContext({
 	totalPrice       : 0,
 	updateMealAmount : (id, amount) => { /* pass */ },
 });
-// TODO push individual course and learning thingy to individual priv repos
+
 // CMT dear me, i know this is complicated AF but basically with this setup i can have
 // O(1) searches when removing and updating the amount and i have an API that automatically saves and
 // get from localStorage; o yea i can also do forof on the cart since its a Map
@@ -32,11 +32,11 @@ const cartReducer = (prevCart, { type, meal }) => {
 			const mealItem = newCart.get(id);
 
 			if (mealItem) {
-				if (amount <= 0) {
-					newCart.delete(id);
-				} else {
-					mealItem.amount = amount;
-				}
+				// if (amount <= 0) {
+				// 	newCart.delete(id);
+				// } else {
+				mealItem.amount = amount;
+				// }
 			} else {
 				throw new Error("No meal!");
 			}
@@ -89,7 +89,7 @@ export const CartContextProvider = ({ children }) => {
 		dispatchCart,
 		removeMeal(id) {
 			dispatchCart({
-				id,
+				meal : { id },
 				type : "REMOVE_MEAL"
 			});
 		},
