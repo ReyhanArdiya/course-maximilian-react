@@ -1,0 +1,6 @@
+POST https://api.pumble.com/workspaces/62329cb6f2720b033a6da536/incomingWebhooks/postMessage/62329cb6f2720b033a6da53d/8z8hXxHn2blzCLxhyfeYrjvS
+# Content-Type: application/json
+
+# {
+# 	text: Henlo!
+# }
