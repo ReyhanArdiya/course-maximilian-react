@@ -38,6 +38,7 @@ function App() {
 	const isNotificationShown = useSelector(({ ui }) => ui.notification);
 	const dispatch = useDispatch();
 	const cart = useSelector(state => state.cart);
+	const changed = useSelector(state => state.cart.changed);
 
 	useEffect(() => {
 		if (isInitial < 4) {
@@ -45,8 +46,10 @@ function App() {
 			return;
 		}
 
-		dispatch(sendCartData(cart));
-	}, [cart, dispatch]);
+		if (changed) {
+			dispatch(sendCartData(cart));
+		}
+	}, [cart, changed, dispatch]);
 
 	const addItems = useCallback(() => {
 		items.forEach(item => {

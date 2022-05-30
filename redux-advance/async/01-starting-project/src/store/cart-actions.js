@@ -55,7 +55,10 @@ export const sendCartData = cartData => async dispatch => {
 			"https://react-http-f24c7-default-rtdb.firebaseio.com/cart.json",
 			{
 				method: "PUT",
-				body: JSON.stringify(cartData)
+				body: JSON.stringify({
+					items: cartData.items,
+					totalQuantity: cartData.totalQuantity
+				})
 			}
 		);
 
