@@ -2,6 +2,6 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-  "/meetups": "pages/meetups.js",
-  "/meetups/new": "pages/meetups/new.js"
+  "/meetups/[meetupId]": "pages/meetups/[meetupId].js",
+  "/meetups": "pages/meetups.js"
 }
