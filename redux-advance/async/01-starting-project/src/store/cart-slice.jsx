@@ -65,3 +65,5 @@ const cartSlice = createSlice({
 
 export const { actions: cartSliceActions, name: cartSliceName } = cartSlice;
 export default cartSlice;
+
+
